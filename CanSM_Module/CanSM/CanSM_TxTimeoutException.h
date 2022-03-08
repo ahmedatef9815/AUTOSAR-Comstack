@@ -1,0 +1,10 @@
+#ifndef CANSM_TXTIMEOUTEXCEPTION_H
+#define CANSM_TXTIMEOUTEXCEPTION_H
+
+#define CANSM_TXTIMEOUTEXCEPTION_AR_RELEASE_MAJOR_VERSION                   (4U)
+#define CANSM_TXTIMEOUTEXCEPTION_AR_RELEASE_MINOR_VERSION                   (0U)
+#define CANSM_TXTIMEOUTEXCEPTION_AR_RELEASE_PATCH_VERSION                   (3U)
+
+void CanSM_TxTimeoutException(NetworkHandleType Channel);
+
+#endif
