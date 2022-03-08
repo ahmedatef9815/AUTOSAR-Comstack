@@ -843,7 +843,7 @@ void CanSM_TxTimeoutException(NetworkHandleType Channel)
 		status = E_NOT_OK;
 	}
     TxStatus = CanIf_GetTxConfirmationState(NetworkManager->Controllers->CanSMControllerId);
-    /*!Comment i think it should call CanIf_GetTxConfirmationState in a given time CanSMBorTimeTxEnsured but to make this happen
+    /*!Comment:i think it should call CanIf_GetTxConfirmationState in a given time CanSMBorTimeTxEnsured but to make this happen
      *it should use OS
     */
     if(status==E_OK&&TxStatus == CANIF_NO_NOTIFICATION)
