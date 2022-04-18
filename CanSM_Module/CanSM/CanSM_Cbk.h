@@ -30,13 +30,13 @@
 #if ((COMSTACK_TYPES_AR_RELEASE_MAJOR_VERSION !=CANSM_CBK_AR_RELEASE_MAJOR_VERSION)\
 		|| (COMSTACK_TYPES_AR_RELEASE_MINOR_VERSION != CANSM_CBK_AR_RELEASE_MINOR_VERSION)\
 		|| (COMSTACK_TYPES_AR_RELEASE_PATCH_VERSION != CANSM_CBK_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of ComStack_Types.h does not match the expected version"
 #endif
 #include"CanIF.h"
 #if ((CANIF_AR_RELEASE_MAJOR_VERSION !=CANSM_CBK_AR_RELEASE_MAJOR_VERSION)\
 		|| (CANIF_AR_RELEASE_MINOR_VERSION != CANSM_CBK_AR_RELEASE_MINOR_VERSION)\
 		|| (CANIF_AR_RELEASE_PATCH_VERSION != CANSM_CBK_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of CanIF.h does not match the expected version"
 #endif
 
 /*******************************************************************************

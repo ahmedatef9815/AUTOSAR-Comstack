@@ -15,7 +15,7 @@
 #if ((COMM_BUSSM_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (COMM_BUSSM_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (COMM_BUSSM_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of ComM_BusSM.h does not match the expected version"
 #endif
 
 #if (CanSMDevErrorDetect == STD_ON)
@@ -32,14 +32,14 @@
 #if ((DEM_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (DEM_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (DEM_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of Dem.h does not match the expected version"
 #endif
 #endif
 #include "CanIf.h"
 #if ((CANIF_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (CANIF_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (CANIF_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of CanIf.h does not match the expected version"
 #endif
 
 #include "CanSM_BswM.h"
@@ -49,14 +49,14 @@
 #if ((CANNM_CBK_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (CANNM_CBK_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (CANNM_CBK_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of CanNm_Cbk.h does not match the expected version"
 #endif
 #endif
 #include "BswM.h"
 #if ((BSWM_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (BSWM_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (BSWM_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of BswM.h does not match the expected version"
 #endif
 
 
@@ -842,10 +842,10 @@ void CanSM_TxTimeoutException(NetworkHandleType Channel)
 		#endif
 		status = E_NOT_OK;
 	}
-    TxStatus = CanIf_GetTxConfirmationState(NetworkManager->Controllers->CanSMControllerId);
-    /*!Comment:i think it should call CanIf_GetTxConfirmationState in a given time CanSMBorTimeTxEnsured but to make this happen
-     *it should use OS
-    */
+    /*make the status of the network bus off recovery state to TX off to make the finite state machine try to make it online again*/
+    CanSM_Internal_NetworkType *Network = &CanSM_Internal.Networks[Channel];
+    Network->BusOffRecoveryState = CANSM_BOR_TXOFF_L1;
+
     if(status==E_OK&&TxStatus == CANIF_NO_NOTIFICATION)
     {
         CanSM_Internal.Networks[Channel].busoffevent=TRUE;

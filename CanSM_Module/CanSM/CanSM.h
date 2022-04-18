@@ -40,21 +40,21 @@
 #if ((CANSM_CFG_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (CANSM_CFG_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (CANSM_CFG_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of CanSM_Cfg.h does not match the expected version"
 #endif
 
 #include "ComStack_Types.h"
 #if ((COMSTACK_TYPES_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (COMSTACK_TYPES_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (COMSTACK_TYPES_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of ComStack_Types.h does not match the expected version"
 #endif
 
 #include "ComM.h"
 #if ((COMM_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (COMM_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (COMM_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
-#error "The AR version of Det.h does not match the expected version"
+#error "The AR version of ComM.h does not match the expected version"
 #endif
 
 /*******************************************************************************
