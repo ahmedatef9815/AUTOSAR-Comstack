@@ -5,7 +5,7 @@
 #define COMM_AR_RELEASE_MINOR_VERSION                   (0U)
 #define COMM_AR_RELEASE_PATCH_VERSION                   (3U)
 
-#define ComMPncSupport                                  STD_ON
+#define ComMPncSupport                                  STD_OFF
 
 typedef enum
 {

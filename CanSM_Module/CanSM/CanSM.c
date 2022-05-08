@@ -11,11 +11,13 @@
 #include "cansm_Internal.h"
 #include "CanSM_Cbk.h"
 
+#if (USE_COMM == STD_ON)
 #include "ComM_BusSM.h"
 #if ((COMM_BUSSM_AR_RELEASE_MAJOR_VERSION !=CANSM_AR_RELEASE_MAJOR_VERSION)\
 		|| (COMM_BUSSM_AR_RELEASE_MINOR_VERSION != CANSM_AR_RELEASE_MINOR_VERSION)\
 		|| (COMM_BUSSM_AR_RELEASE_PATCH_VERSION != CANSM_AR_RELEASE_PATCH_VERSION))
 #error "The AR version of ComM_BusSM.h does not match the expected version"
+#endif
 #endif
 
 #if (CanSMDevErrorDetect == STD_ON)
@@ -42,7 +44,9 @@
 #error "The AR version of CanIf.h does not match the expected version"
 #endif
 
+#if (USE_BSW ==STD_ON)
 #include "CanSM_BswM.h"
+#endif
 
 #if (CanSMPncSupport == STD_ON)
 #include "CanNm_Cbk.h"
@@ -261,8 +265,12 @@ Std_ReturnType CanSM_RequestComMode(NetworkHandleType network,ComM_ModeType ComM
 		}
 	if(totalStatus==E_OK)
 	{
-		BswM_CanSM_CurrentState(network,CanSMCurrentState);
+	    #if (USE_BSW==STD_ON)
+          BswM_CanSM_CurrentState(network,CanSMCurrentState);
+	    #endif
+	    #if (USE_COMM==STD_ON)
 		ComM_BusSM_ModeIndication(network, &ComM_Mode);
+		#endif
 		CanSM_Internal.Networks[network].requestedMode = ComM_Mode;
 	}
 	return totalStatus;
@@ -387,8 +395,12 @@ Std_ReturnType CanSM_StartWakeupSource(NetworkHandleType network)
     ComM_ModeType ComM_Mode = COMM_NO_COMMUNICATION;
 	if(totalStatus==E_OK)
 	{
+	    #if (USE_BSW==STD_ON)
 		BswM_CanSM_CurrentState(network,CANSM_BSWM_NO_COMMUNICATION);
+		#endif
+		#if (USE_COMM==STD_ON)
 		ComM_BusSM_ModeIndication(network, &ComM_Mode);
+		#endif
 		CanSM_Internal.Networks[network].requestedMode = ComM_Mode;
 	}
 	return totalStatus;
@@ -465,8 +477,12 @@ Std_ReturnType CanSM_StopWakeupSource(NetworkHandleType network)
     ComM_ModeType ComM_Mode = COMM_SLEEP_COMMUNICATION;
 	if(totalStatus==E_OK)
 	{
+	    #if (USE_BSW == STD_ON)
 		BswM_CanSM_CurrentState(network,CANSM_BSWM_NO_COMMUNICATION);
+		#endif
+		#if (USE_COMM == STD_ON)
 		ComM_BusSM_ModeIndication(network, &ComM_Mode);
+		#endif
 		CanSM_Internal.Networks[network].requestedMode = ComM_Mode;
 	}
 	return totalStatus;
@@ -688,7 +704,9 @@ void CanSM_ControllerBusOff(uint8 ControllerId)
 		if(flage==TRUE)
 		{
 			CanSM_Internal.Networks[i].busoffevent = TRUE;
+			#if (USE_BSW==STD_ON)
 			BswM_CanSM_CurrentState(Network->CanSMComMNetworkHandleRef,CANSM_BSWM_BUS_OFF);
+			#endif
 		}
 		flage=FALSE;
 	}

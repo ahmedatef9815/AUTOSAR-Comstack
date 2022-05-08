@@ -39,12 +39,14 @@
 #error "The AR version of ComM.h does not match the expected version"
 #endif
 
+#define USE_BSW                                 STD_OFF
+#define USE_COMM                                STD_OFF
 /*COMMUNICATION IN SLEEP MODE(UN_INITIALIZED)*/
 #define COMM_SLEEP_COMMUNICATION                (3)
 /* Pre-compile option for Development Error Detect */
 #define CanSMDevErrorDetect						STD_ON
 #define CanSMGetBusOffDelayFunction				User_GetBusOffDelay
-#define CanSMIcomSupport						STD_ON
+#define CanSMIcomSupport						STD_OFF
 #define CanSMMainFunctionTimePeriod				100
 #define CanSMPncSupport							ComMPncSupport
 #define CanSMSetBaudrateApi						STD_ON
