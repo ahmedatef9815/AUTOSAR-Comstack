@@ -34,7 +34,7 @@ extern PduR_StateType PduRState;
 							transmission is aborted.
  Description:               Requests transmission of an I-PDU.
 *******************************************************************************************************************************/
-Std_ReturnType PduR_ComTransmit(PduIdType id,const PduInfoType* info)
+Std_ReturnType PduR_ComTransmit(PduIdType TxPduId,const PduInfoType* PduInfoPtr)
 {
 	uint8 PduRRoutingPathIndex;
 
@@ -42,10 +42,10 @@ Std_ReturnType PduR_ComTransmit(PduIdType id,const PduInfoType* info)
 	{ 
 		for (PduRRoutingPathIndex = 0; PduRRoutingPathIndex < PduRMaxRoutingPathCnt; PduRRoutingPathIndex++)
 		{
-			if (PduR.PduRRoutingPaths.PduRRoutingPath[PduRRoutingPathIndex].PduRSrcPdu.PduRSourcePduHandleId == id)
+			if (PduR.PduRRoutingPaths.PduRRoutingPath[PduRRoutingPathIndex].PduRSrcPdu.PduRSourcePduHandleId == TxPduId)
 			{ 
                          
-				return CanTp_Transmit(PduR.PduRRoutingPaths.PduRRoutingPath[PduRRoutingPathIndex].PduRDestPdu.PduRDestPduHandleId, info);
+				return CanTp_Transmit(PduR.PduRRoutingPaths.PduRRoutingPath[PduRRoutingPathIndex].PduRDestPdu.PduRDestPduHandleId, PduInfoPtr);
 			}
 			
 		}
