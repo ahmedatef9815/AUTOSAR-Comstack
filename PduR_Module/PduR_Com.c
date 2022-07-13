@@ -24,8 +24,8 @@ extern PduR_StateType PduRState;
 /*********************************************************************************************************************************
  Service name:                  PduR_ComTransmit
  Service ID:                       0x49
- Parameters (in):           id--> Identification of the I-PDU.
-			   info-->Length and pointer to the buffer of the I-PDU.
+ Parameters (in):           TxPduId--> Identification of the I-PDU.
+			   PduInfoPtr-->Length and pointer to the buffer of the I-PDU.
  Parameters (inout):              None
  Parameters (out):                None
  Return value:              Std_ReturnType-->
