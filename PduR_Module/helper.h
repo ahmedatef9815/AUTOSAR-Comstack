@@ -1,3 +1,6 @@
+/*this file used for testing only*/
+
+
 #include "PduR.h"
 BufReq_ReturnType Com_StartOfReception (
  PduIdType id,
